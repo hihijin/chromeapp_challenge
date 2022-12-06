@@ -7,10 +7,10 @@ function onGeoOk(position){
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        const weather = document.querySelector("#weather span:first-child");
-        const city = document.querySelector("#weather span:last-child");
-        city.innerText = data.name;
-        weather.innerText = data.weather[0].main;
+        const weather = document.querySelector("#weather span:last-child");
+        const city = document.querySelector("#weather span:first-child");
+        city.innerText = `현재 위치: ${data.name},`;
+        weather.innerText = `현재 날씨: ${data.weather[0].main}`;
     });
 }
 function onGeoError(){

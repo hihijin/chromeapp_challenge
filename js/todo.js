@@ -13,7 +13,7 @@ function saveToDos(){
 function deleteToDo(event){
     const li = event.target.parentElement;
     li.remove();
-    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
     saveToDos();
 }
 
@@ -21,9 +21,9 @@ function paintToDo(newToDo){
     const li = document.createElement("li");
     li.id = newToDo.id;
     const span = document.createElement("span");
-    span.innerText = newToDo.text;
+    span.innerText = newToDo.text; 
     const button = document.createElement("button");
-    button.innerText = "X";
+    button.innerText = "삭제";
     button.addEventListener("click", deleteToDo);
     li.appendChild(span);
     li.appendChild(button); 
@@ -35,8 +35,8 @@ function handleToFoSubmit(event){
     const newToDo = toDoInput.value; 
     toDoInput.value = ""; 
     const newToDoObj = {
-        text : newToDo,
-        id : Date.now(),
+        text:newToDo,
+        id:Date.now(),
     };
     toDos.push(newToDoObj);
     paintToDo(newToDoObj);
@@ -48,8 +48,9 @@ toDoForm.addEventListener("submit", handleToFoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 console.log(saveToDos);
 
-if(savedToDos !== null){
+if(savedToDos !== null){ 
     const parsedToDos = JSON.parse(savedToDos);
     toDos = parsedToDos;
     parsedToDos.forEach(paintToDo);
+    //foreach함수는 이 painttodo를 parsedtodos 배열의 요소마다 실횅시킴
 }
